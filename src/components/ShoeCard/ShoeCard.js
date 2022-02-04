@@ -37,7 +37,9 @@ const ShoeCard = ({
       <Wrapper>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
-          {(variant !== 'default') && <Flag variant={variant}>{variantText}</Flag>}
+          {/* {(variant !== 'default') && <Flag variant={variant}>{variantText}</Flag>} */}
+          {(variant === 'on-sale') && <SaleFlag>Sale</SaleFlag>}
+          {(variant === 'new-release') && <ReleasedFlag>Just released!</ReleasedFlag>}
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
@@ -75,6 +77,15 @@ const Flag = styled.span`
   border-radius: 3px;
   color: white;
   background: ${(props) => props.variant === 'on-sale' ? '#c5295d' : '#6868d9'};
+  /* or instead have 2 inherit from Flag: */
+`;
+
+const SaleFlag = styled(Flag)`
+  background: #c5295d;
+`;
+
+const ReleasedFlag = styled(Flag)`
+  background: #6868d9;
 `;
 
 const Row = styled.div`
