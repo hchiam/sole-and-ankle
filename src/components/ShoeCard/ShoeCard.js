@@ -30,12 +30,14 @@ const ShoeCard = ({
     : isNewShoe(releaseDate)
       ? 'new-release'
       : 'default'
+  const variantText = variant === 'on-sale' ? 'Sale' : 'new-release' ? 'Just released!' : '';
 
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
+          {(variant !== 'default') && <Flag variant={variant}>{variantText}</Flag>}
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
@@ -63,6 +65,16 @@ const ImageWrapper = styled.div`
 
 const Image = styled.img`
   max-width: 100%;
+`;
+
+const Flag = styled.span`
+  position: absolute;
+  right: -5px;
+  top: 15px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: white;
+  background: ${(props) => props.variant === 'on-sale' ? '#c5295d' : '#6868d9'};
 `;
 
 const Row = styled.div`
